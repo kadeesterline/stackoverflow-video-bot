@@ -2,6 +2,8 @@
 
 import chalk from "chalk";
 import inquirer from "inquirer";
+import { screenshot } from "./lib/screenshot.js";
+import { makeApiCall } from "./lib/api-call.js";
 
 // sleep is used to add a bit of delay to function calls if needed
 const sleep = (ms = 2000) => new Promise((r) => setTimeout(r, ms));
@@ -81,15 +83,29 @@ If these look correct, enter y (case sensitive). If you need to start over, pres
 async function startVideoEdit() {
   console.log("Starting Video Edit, this might take a while");
   await sleep();
-  // TODO : build out functions using puppeteer to grab screenshots
-  console.log(`Grabbing screenshots from ${questionURL}`);
+
+  // TODO : build out functions using API to get question data
+  console.log("Grabbing question data from stackoverflow");
+  console.log("");
+  await makeApiCall(questionURL);
   await sleep();
+  // TODO : build out functions using puppeteer to grab screenshots
+  // * screenshot function coming from ./lib/screenshot.js
+  console.log(`Grabbing screenshots from ${questionURL}`);
+  console.log("");
+  await screenshot(questionURL);
+  await sleep();
+
   // TODO : build out functions using say to convert text to speech
   console.log(`Converting text from ${questionURL} to speech`);
+  console.log("");
   await sleep();
+
   // TODO : build out functions using ytdl to download video
   console.log(`Grabbing video from ${videoURL}`);
+  console.log("");
   await sleep();
+
   // TODO : build out functions using etro to stitch them all together
   console.log("Wrapping up");
 }
