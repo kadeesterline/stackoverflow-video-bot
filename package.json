@@ -1,0 +1,25 @@
+{
+  "name": "stackoverflow-bot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "mocha"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^5.0.1",
+    "etro": "^0.8.5",
+    "inquirer": "^9.0.0",
+    "node-fetch": "^3.2.6",
+    "puppeteer": "^15.3.0",
+    "say": "^0.16.0",
+    "ytdl-core": "^4.11.0"
+  },
+  "devDependencies": {
+    "mocha": "^10.0.0"
+  }
+}
