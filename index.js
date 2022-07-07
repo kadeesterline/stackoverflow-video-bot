@@ -86,14 +86,16 @@ async function startVideoEdit() {
   console.log("Starting Video Edit, this might take a while");
   await sleep();
 
-  // TODO : build out functions using API to get question data
+  // * gets question data from API
+  // TODO: build out functions to get answers and their text content
   console.log("Grabbing question data from stackoverflow");
   console.log("");
   await makeApiCall(questionURL, questionDataObj);
   await sleep();
+
   // if (questionDataObj.isAnswered == true) {
-  // TODO : build out functions using puppeteer to grab screenshots
-  // * screenshot function coming from ./lib/screenshot.js
+  // * screenshots question
+  // TODO : build out functions to screenshot answers
   console.log(`Grabbing screenshots from ${questionURL}`);
   console.log("");
   await screenshot(questionURL);
@@ -104,7 +106,7 @@ async function startVideoEdit() {
   console.log("");
   await sleep();
 
-  // TODO : build out functions using ytdl to download video
+  // * downloads video from youtube for background
   console.log(`Grabbing video from ${videoURL}`);
   console.log("");
   await downloadVideo(videoURL);

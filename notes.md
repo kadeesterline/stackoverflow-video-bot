@@ -28,3 +28,8 @@ Needed:
    - contains the logic to start program. Greets user, takes in inputs and makes function calls to modules imported from /lib
 
 ## To do
+
+- [] Make API call that grabs all answers to the passed in question
+- [] Build out function(s) that are needed to screenshot each individual comment (probably using API calls response?)
+- [] Build out functions that take text from API answers and convert each one to MP3
+- [] Build out functions that stitch together all of the parts of the tiktok
