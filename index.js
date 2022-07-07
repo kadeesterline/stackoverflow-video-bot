@@ -9,18 +9,19 @@ import { makeApiCall } from "./lib/api-call.js";
 const sleep = (ms = 2000) => new Promise((r) => setTimeout(r, ms));
 
 // * Global variables
-let questionURL;
-let videoURL;
+let questionURL = "";
+let videoURL = "";
+let questionDataObj = {};
 
 // welcome function used at start of program, prints title and description
 async function welcome() {
   const greeting = chalk.green("STACKOVERFLOW VIDEO CREATOR");
   console.log(greeting);
   const message = chalk.green(`
-This tool will allow you to input a stackoverflow url and a background video url and 
-spit out a video of the question being read as well as the answers to the questions.
-Authors: Kade Esterline
-Version: 1.0  `);
+This tool will allow you to input a stackoverflow url and a background video url 
+and spit out a video of the question being read as well as the answers to the 
+questions.
+`);
   console.log(message);
 }
 
@@ -87,27 +88,33 @@ async function startVideoEdit() {
   // TODO : build out functions using API to get question data
   console.log("Grabbing question data from stackoverflow");
   console.log("");
-  await makeApiCall(questionURL);
+  await makeApiCall(questionURL, questionDataObj);
   await sleep();
-  // TODO : build out functions using puppeteer to grab screenshots
-  // * screenshot function coming from ./lib/screenshot.js
-  console.log(`Grabbing screenshots from ${questionURL}`);
-  console.log("");
-  await screenshot(questionURL);
-  await sleep();
+  if (questionDataObj.isAnswered) {
+    // TODO : build out functions using puppeteer to grab screenshots
+    // * screenshot function coming from ./lib/screenshot.js
+    console.log(`Grabbing screenshots from ${questionURL}`);
+    console.log("");
+    // await screenshot(questionURL);
+    await sleep();
 
-  // TODO : build out functions using say to convert text to speech
-  console.log(`Converting text from ${questionURL} to speech`);
-  console.log("");
-  await sleep();
+    // TODO : build out functions using say to convert text to speech
+    console.log(`Converting text from ${questionURL} to speech`);
+    console.log("");
+    await sleep();
 
-  // TODO : build out functions using ytdl to download video
-  console.log(`Grabbing video from ${videoURL}`);
-  console.log("");
-  await sleep();
+    // TODO : build out functions using ytdl to download video
+    console.log(`Grabbing video from ${videoURL}`);
+    console.log("");
+    await sleep();
 
-  // TODO : build out functions using etro to stitch them all together
-  console.log("Wrapping up");
+    // TODO : build out functions using etro to stitch them all together
+    console.log("Wrapping up");
+  } else {
+    console.log(
+      "You'll need to start over by typing 'node .' into your terminal."
+    );
+  }
 }
 
 // called when user doesn't confirm their inputs, starts process over
