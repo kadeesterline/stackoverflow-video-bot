@@ -13,6 +13,7 @@ const sleep = (ms = 2000) => new Promise((r) => setTimeout(r, ms));
 let questionURL = "";
 let videoURL = "";
 let questionDataObj = {};
+let plainTextStrings = [];
 
 // welcome function used at start of program, prints title and description
 async function welcome() {
@@ -90,7 +91,7 @@ async function startVideoEdit() {
   // TODO: build out functions to get answers and their text content
   console.log("Grabbing question data from stackoverflow");
   console.log("");
-  await makeApiCall(questionURL, questionDataObj);
+  await makeApiCall(questionURL, questionDataObj, plainTextStrings);
   await sleep();
 
   // if (questionDataObj.isAnswered == true) {
