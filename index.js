@@ -4,6 +4,7 @@ import chalk from "chalk";
 import inquirer from "inquirer";
 import { screenshot } from "./lib/screenshot.js";
 import { makeApiCall } from "./lib/api-call.js";
+import { downloadVideo } from "./lib/download-video.js";
 
 // sleep is used to add a bit of delay to function calls if needed
 const sleep = (ms = 2000) => new Promise((r) => setTimeout(r, ms));
@@ -90,31 +91,32 @@ async function startVideoEdit() {
   console.log("");
   await makeApiCall(questionURL, questionDataObj);
   await sleep();
-  if (questionDataObj.isAnswered) {
-    // TODO : build out functions using puppeteer to grab screenshots
-    // * screenshot function coming from ./lib/screenshot.js
-    console.log(`Grabbing screenshots from ${questionURL}`);
-    console.log("");
-    // await screenshot(questionURL);
-    await sleep();
+  // if (questionDataObj.isAnswered == true) {
+  // TODO : build out functions using puppeteer to grab screenshots
+  // * screenshot function coming from ./lib/screenshot.js
+  console.log(`Grabbing screenshots from ${questionURL}`);
+  console.log("");
+  await screenshot(questionURL);
+  await sleep();
 
-    // TODO : build out functions using say to convert text to speech
-    console.log(`Converting text from ${questionURL} to speech`);
-    console.log("");
-    await sleep();
+  // TODO : build out functions using say to convert text to speech
+  console.log(`Converting text from ${questionURL} to speech`);
+  console.log("");
+  await sleep();
 
-    // TODO : build out functions using ytdl to download video
-    console.log(`Grabbing video from ${videoURL}`);
-    console.log("");
-    await sleep();
+  // TODO : build out functions using ytdl to download video
+  console.log(`Grabbing video from ${videoURL}`);
+  console.log("");
+  await downloadVideo(videoURL);
+  await sleep();
 
-    // TODO : build out functions using etro to stitch them all together
-    console.log("Wrapping up");
-  } else {
-    console.log(
-      "You'll need to start over by typing 'node .' into your terminal."
-    );
-  }
+  // TODO : build out functions using etro to stitch them all together
+  console.log("Wrapping up");
+  // } else {
+  console.log(
+    "You'll need to start over by typing 'node .' into your terminal."
+  );
+  // }
 }
 
 // called when user doesn't confirm their inputs, starts process over
