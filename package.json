@@ -11,6 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@google-cloud/text-to-speech": "^4.0.0",
     "chalk": "^5.0.1",
     "etro": "^0.8.5",
     "inquirer": "^9.0.0",

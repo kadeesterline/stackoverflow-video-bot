@@ -5,6 +5,7 @@ import inquirer from "inquirer";
 import { screenshot } from "./lib/screenshot.js";
 import { makeApiCall } from "./lib/api-call.js";
 import { downloadVideo } from "./lib/download-video.js";
+import { textToSpeech } from "./lib/text-to-speech.js";
 
 // sleep is used to add a bit of delay to function calls if needed
 const sleep = (ms = 2000) => new Promise((r) => setTimeout(r, ms));
@@ -12,8 +13,16 @@ const sleep = (ms = 2000) => new Promise((r) => setTimeout(r, ms));
 // * Global variables
 let questionURL = "";
 let videoURL = "";
-let questionDataObj = {};
-let plainTextStrings = [];
+let questionDataObj = {
+  textString: "",
+  isAnswered: false,
+  answerCount: 0,
+  htmlString: "",
+  answerIds: [],
+};
+let plainTextStrings = {
+  strings: [],
+};
 
 // welcome function used at start of program, prints title and description
 async function welcome() {
@@ -87,11 +96,10 @@ async function startVideoEdit() {
   console.log("Starting Video Edit, this might take a while");
   await sleep();
 
-  // * gets question data from API
-  // TODO: build out functions to get answers and their text content
+  // * gets question data from API, converts question html and answer html to plain text string
   console.log("Grabbing question data from stackoverflow");
   console.log("");
-  await makeApiCall(questionURL, questionDataObj, plainTextStrings);
+  makeApiCall(questionURL, questionDataObj, plainTextStrings);
   await sleep();
 
   // if (questionDataObj.isAnswered == true) {
@@ -99,18 +107,19 @@ async function startVideoEdit() {
   // TODO : build out functions to screenshot answers
   console.log(`Grabbing screenshots from ${questionURL}`);
   console.log("");
-  await screenshot(questionURL);
+  screenshot(questionURL);
   await sleep();
 
   // TODO : build out functions using say to convert text to speech
   console.log(`Converting text from ${questionURL} to speech`);
   console.log("");
+  // textToSpeech(questionDataObj.textString);
   await sleep();
 
   // * downloads video from youtube for background
   console.log(`Grabbing video from ${videoURL}`);
   console.log("");
-  await downloadVideo(videoURL);
+  downloadVideo(videoURL);
   await sleep();
 
   // TODO : build out functions using etro to stitch them all together
