@@ -114,14 +114,14 @@ async function startVideoEdit() {
   console.log(`Converting text from ${questionURL} to speech`);
   console.log("");
   // console.log(questionDataObj.textString);
-  // await convertTextToSpeech(questionDataObj.textString[0]);
+  await convertTextToSpeech(questionDataObj.textString[0]);
   console.log(plainTextStrings.strings.length);
   async function getAnswerAudio() {
     for (let i = 0; i < plainTextStrings.strings.length; i++) {
       await convertTextToSpeech(plainTextStrings.strings[i]);
     }
   }
-  getAnswerAudio();
+  await getAnswerAudio();
   await sleep();
 
   // * downloads video from youtube for background
