@@ -7,8 +7,8 @@ This project takes in the URL for both a background video and the question you w
 
 ## Requirements
 
-NodeJS
-Google Cloud account (steps below to set this up)
+- NodeJS
+- Google Cloud account (steps below to set this up)
 
 ## Installation
 
