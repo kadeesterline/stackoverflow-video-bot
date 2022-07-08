@@ -8,12 +8,32 @@ This project takes in the URL for both a background video and the question you w
 ## Requirements
 
 NodeJS
+Google Cloud account (steps below to set this up)
 
 ## Installation
 
-1. Clone this repository
-2. From within the projects directory on your machine run `npm install`
-3. To run the CLI app, again from the projects directory run `node .` or `node index.js`
+In order to run this app you'll need to setup and use a google cloud account as well as a service account. Below are the complete steps you'll need to take to both set up a google cloud account, set your access keys and run the app.
+
+Google Cloud set up:
+
+1. Navigate to [this link](https://console.cloud.google.com/). If you need to create an account, do so.
+2. Create a new project and call it what ever you want
+3. Search for 'Cloud Text-to-Speech API' in the search bar
+4. After adding the API to your project, click the three lines in the top left corner to expand the side bar
+5. Hover over 'IAM & Admin' and Service Accounts
+6. At the top of the page click 'Create Service Account'
+7. After giving the account a name (I would reccommend something like 'text to speech account') click continue
+8. Click select role and scroll down to Service Accounts, and select Service Account User
+9. Click through the rest of the prompts and then click 'Manage Keys' after clicking the three dots under 'Actions'
+10. Click 'Add Key', 'Create New Key', and make sure JSON is selected before finally clicking create.
+
+Now you should have downloaded a json file containing your keys. You can move this file anywhere you'd like just make sure you aren't moving it into a git repository as you don't want your keys on github.
+
+11. Clone this repository if you haven't already.
+12. Navigate to within the project from your terminal.
+13. run `npm install`
+14. run `export GOOGLE_APPLICATION_CREDENTIALS=KEY_PATH` replacing 'KEY_PATH' with the path to where you saved your json keys.
+15. run `node .` to run the app
 
 ## Contributing
 
