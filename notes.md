@@ -33,3 +33,9 @@ Needed:
 - [] Build out function(s) that are needed to screenshot each individual comment (probably using API calls response?)
 - [] Build out functions that take text from API answers and convert each one to MP3
 - [] Build out functions that stitch together all of the parts of the tiktok
+
+## Test Links
+
+https://stackoverflow.com/questions/51312575/remove-togglebutton-annoying-background-mouse-over-style
+
+https://www.youtube.com/watch?v=2VpG0WS4uCo&ab_channel=MinecraftGameplay

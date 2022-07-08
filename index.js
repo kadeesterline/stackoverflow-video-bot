@@ -24,7 +24,7 @@ let plainTextStrings = {
   strings: [],
 };
 
-// welcome function used at start of program, prints title and description
+// * welcome function used at start of program, prints title and description
 async function welcome() {
   const greeting = chalk.green("STACKOVERFLOW VIDEO CREATOR");
   console.log(greeting);
@@ -107,7 +107,7 @@ async function startVideoEdit() {
   // TODO : build out functions to screenshot answers
   console.log(`Grabbing screenshots from ${questionURL}`);
   console.log("");
-  screenshot(questionURL);
+  screenshot(questionURL, questionDataObj);
   await sleep();
 
   // TODO : build out functions using say to convert text to speech
@@ -125,13 +125,13 @@ async function startVideoEdit() {
   // TODO : build out functions using etro to stitch them all together
   console.log("Wrapping up");
   // } else {
-  console.log(
-    "You'll need to start over by typing 'node .' into your terminal."
-  );
+  // console.log(
+  //   "You'll need to start over by typing 'node .' into your terminal."
+  // );
   // }
 }
 
-// called when user doesn't confirm their inputs, starts process over
+// * called when user doesn't confirm their inputs, starts process over
 async function startOver() {
   await getQuestionURL();
   await getVideoURL();
