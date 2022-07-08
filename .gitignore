@@ -2,3 +2,4 @@ node_modules/
 audio/
 videos/
 screenshots/
+*.mp3
