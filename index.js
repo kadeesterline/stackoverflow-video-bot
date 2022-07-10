@@ -114,11 +114,11 @@ async function startVideoEdit() {
   console.log(`Converting text from ${questionURL} to speech`);
   console.log("");
   // console.log(questionDataObj.textString);
-  await convertTextToSpeech(questionDataObj.textString[0]);
-  console.log(plainTextStrings.strings.length);
+  await convertTextToSpeech(questionDataObj.textString[0], 0);
+  // console.log(plainTextStrings.strings.length);
   async function getAnswerAudio() {
-    for (let i = 0; i < plainTextStrings.strings.length; i++) {
-      await convertTextToSpeech(plainTextStrings.strings[i]);
+    for (let i = 1; i <= plainTextStrings.strings.length; i++) {
+      await convertTextToSpeech(plainTextStrings.strings[i - 1], i);
     }
   }
   await getAnswerAudio();
