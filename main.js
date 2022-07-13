@@ -25,6 +25,7 @@ let questionDataObj = {
 let plainTextStrings = {
   strings: [],
 };
+let fileNames = ["question-title", "question-body"];
 
 // * welcome function used at start of program, prints title and description
 async function welcome() {
@@ -80,11 +81,6 @@ async function confirmStart() {
 If these look correct, enter y (case sensitive). If you need to start over, press any other key`,
   });
 
-  fs.readFile("./data.json", "utf-8", (err, jsonString) => {
-    const data = JSON.parse(jsonString);
-    console.log(data);
-  });
-
   if (answer.answer == "y") {
     startVideoEdit();
   } else {
@@ -107,7 +103,7 @@ async function startVideoEdit() {
   // * gets question data from API, converts question html and answer html to plain text string
   console.log("Grabbing question data from stackoverflow");
   console.log("");
-  await makeApiCall(questionURL, questionDataObj, plainTextStrings);
+  await makeApiCall(questionURL, questionDataObj, plainTextStrings, fileNames);
   await sleep();
 
   // if (questionDataObj.isAnswered == true) {
@@ -115,7 +111,7 @@ async function startVideoEdit() {
   // TODO : build out functions to screenshot answers
   console.log(`Grabbing screenshots from ${questionURL}`);
   console.log("");
-  await screenshot(questionURL, questionDataObj);
+  await screenshot(questionURL, questionDataObj, fileNames);
   await sleep();
 
   // TODO : build out functions using say to convert text to speech
@@ -141,7 +137,8 @@ async function startVideoEdit() {
   // TODO : build out functions using etro to stitch them all together
   console.log("Wrapping up");
   console.log("");
-  await editVideo();
+  console.log("file names before editVideo:", fileNames);
+  await editVideo(fileNames);
   // } else {
   // console.log(
   //   "You'll need to start over by typing 'node .' into your terminal."
