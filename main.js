@@ -2,10 +2,12 @@
 
 import chalk from "chalk";
 import inquirer from "inquirer";
+import fs from "fs";
 import { screenshot } from "./lib/screenshot.js";
 import { makeApiCall } from "./lib/api-call.js";
 import { downloadVideo } from "./lib/download-video.js";
 import { convertTextToSpeech } from "./lib/text-to-speech.js";
+import { editVideo } from "./lib/edit-video.js";
 
 // sleep is used to add a bit of delay to function calls if needed
 const sleep = (ms = 2000) => new Promise((r) => setTimeout(r, ms));
@@ -78,6 +80,11 @@ async function confirmStart() {
 If these look correct, enter y (case sensitive). If you need to start over, press any other key`,
   });
 
+  fs.readFile("./data.json", "utf-8", (err, jsonString) => {
+    const data = JSON.parse(jsonString);
+    console.log(data);
+  });
+
   if (answer.answer == "y") {
     startVideoEdit();
   } else {
@@ -87,10 +94,11 @@ If these look correct, enter y (case sensitive). If you need to start over, pres
 
 /**
  * prints confirmation that process has begun
- * calls X function to utilize puppeteer and grab screenshots
- * calls X function to utilize say to generate text to speech
- * calls X function to utilize ytdl to download background video
- * calls X function to utilize etro to stitch together video
+ * calls makeApiCall function to grab text from API
+ * calls screenshot function to utilize puppeteer and grab screenshots
+ * calls convertTextToSpeech function to utilize say to generate text to speech
+ * calls downloadVideo function to utilize ytdl to download background video
+ * calls editVideo function to utilize etro to stitch together video
  */
 async function startVideoEdit() {
   console.log("Starting Video Edit, this might take a while");
@@ -127,11 +135,13 @@ async function startVideoEdit() {
   // * downloads video from youtube for background
   console.log(`Grabbing video from ${videoURL}`);
   console.log("");
-  downloadVideo(videoURL);
+  await downloadVideo(videoURL);
   await sleep();
 
   // TODO : build out functions using etro to stitch them all together
   console.log("Wrapping up");
+  console.log("");
+  await editVideo();
   // } else {
   // console.log(
   //   "You'll need to start over by typing 'node .' into your terminal."
