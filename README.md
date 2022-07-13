@@ -7,8 +7,9 @@ This project takes in the URL for both a background video and the question you w
 
 ## Requirements
 
-- NodeJS
+- NodeJS (install node and npm [here](https://nodejs.org/en/download/))
 - Google Cloud account (steps below to set this up)
+- Ffmpeg (install ffmpeg [here](https://ffmpeg.org/download.html))
 
 ## Installation
 
