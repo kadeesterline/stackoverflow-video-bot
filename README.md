@@ -11,7 +11,7 @@ This project takes in the URL for both a background video and the question you w
 - Google Cloud account (steps below to set this up)
 - Ffmpeg (install ffmpeg [here](https://ffmpeg.org/download.html))
 
-## Installation
+## Installation and Set Up
 
 In order to run this app you'll need to setup and use a google cloud account as well as a service account. Below are the complete steps you'll need to take to both set up a google cloud account, set your access keys and run the app.
 
@@ -35,6 +35,10 @@ Now you should have downloaded a json file containing your keys. You can move th
 13. run `npm install`
 14. run `export GOOGLE_APPLICATION_CREDENTIALS=KEY_PATH` replacing 'KEY_PATH' with the path to where you saved your json keys.
 15. run `node .` to run the app
+
+## Usage
+
+To use the app, first follow the instructions for installation/set up. After running the `node .` command, you'll be greeted and prompted to provide a link to a stackoverflow question. After entering the stackoverflow question, you'll be prompted for a link to a youtube video to use as the background. After confirming that both links you entered are correct, the app will begin gathering the needed resources to make the video for you. Depending on the question thread and the video you want as your background, the whole process may take awhile. Example outputs will be coming soon!
 
 ## Contributing
 
