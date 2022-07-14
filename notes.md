@@ -29,9 +29,12 @@ Needed:
 
 ## To do
 
-- [] programmatically name audio files to match video files
+- [1/2] programmatically name audio files to match video files
+  - passing in file names, need to finish next task before I can finish this one.
 - [] get text-to-speech for title
+  -
 - [] create final video
+  -
 
 ## Test Links
 

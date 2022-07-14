@@ -16,6 +16,7 @@ const sleep = (ms = 2000) => new Promise((r) => setTimeout(r, ms));
 let questionURL = "";
 let videoURL = "";
 let questionDataObj = {
+  title: "",
   textString: "",
   isAnswered: false,
   answerCount: 0,
@@ -107,22 +108,28 @@ async function startVideoEdit() {
   await sleep();
 
   // if (questionDataObj.isAnswered == true) {
-  // * screenshots question
-  // TODO : build out functions to screenshot answers
+  // * screenshots question and answers
   console.log(`Grabbing screenshots from ${questionURL}`);
   console.log("");
   await screenshot(questionURL, questionDataObj, fileNames);
   await sleep();
 
-  // TODO : build out functions using say to convert text to speech
+  // TODO : convert all text to speech
   console.log(`Converting text from ${questionURL} to speech`);
   console.log("");
   // console.log(questionDataObj.textString);
-  await convertTextToSpeech(questionDataObj.textString[0], 0);
+  // * question body
+  await convertTextToSpeech(questionDataObj.title[0], "question-title");
+  await convertTextToSpeech(questionDataObj.textString[0], "question-body");
+
   // console.log(plainTextStrings.strings.length);
+  // * answers
   async function getAnswerAudio() {
     for (let i = 1; i <= plainTextStrings.strings.length; i++) {
-      await convertTextToSpeech(plainTextStrings.strings[i - 1], i);
+      await convertTextToSpeech(
+        plainTextStrings.strings[i - 1],
+        fileNames[i + 1]
+      );
     }
   }
   await getAnswerAudio();
@@ -134,10 +141,9 @@ async function startVideoEdit() {
   await downloadVideo(videoURL);
   await sleep();
 
-  // TODO : build out functions using etro to stitch them all together
+  // TODO : finish audio then stitch audio to matching image, overlay them all ontop of background
   console.log("Wrapping up");
   console.log("");
-  console.log("file names before editVideo:", fileNames);
   await editVideo(fileNames);
   // } else {
   // console.log(
