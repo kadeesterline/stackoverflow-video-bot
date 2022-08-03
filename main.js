@@ -3,11 +3,13 @@
 import chalk from "chalk";
 import inquirer from "inquirer";
 import fs from "fs";
+import process from "process";
+import rimraf from "rimraf";
 import { screenshot } from "./lib/screenshot.js";
 import { makeApiCall } from "./lib/api-call.js";
 import { downloadVideo } from "./lib/download-video.js";
 import { convertTextToSpeech } from "./lib/text-to-speech.js";
-import { editVideo } from "./lib/edit-video.js";
+import { editVideo } from "./lib/edit-video/edit-video.js";
 
 // sleep is used to add a bit of delay to function calls if needed
 const sleep = (ms = 2000) => new Promise((r) => setTimeout(r, ms));
@@ -83,11 +85,32 @@ If these look correct, enter y (case sensitive). If you need to start over, pres
   });
 
   if (answer.answer == "y") {
+    // await removeFiles();
     startVideoEdit();
   } else {
     startOver();
   }
 }
+
+// async function removeFiles() {
+//   const directories = [
+//     `${process.cwd()}/audio`,
+//     `${process.cwd()}/screenshots`,
+//     `${process.cwd()}/videos`,
+//     `${process.cwd()}/lib/edit-video/temp`,
+//   ];
+
+//   for (let i = 0; i < directories.length; i++) {
+//     // fs.rmSync(directories[i], { resursive: true, force: true });
+//     rimraf(directories[i], function () {
+//       console.log(`deleted`);
+//     });
+//   }
+
+//   for (let i = 0; i < directories.length; i++) {
+//     fs.mkdirSync(directories[i]);
+//   }
+// }
 
 /**
  * prints confirmation that process has begun
